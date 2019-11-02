@@ -26,7 +26,7 @@ git clone https://github.com/olegabu/go-secp256k1-zkp
 
 # build
 cd $GOPATH/github.com/olegabu/go-secp256k1-zkp
-make
+CFLAGS="-fPIC" make
 ```
 
 this will build dependant C libraries secp256k1-zkp into `$GOPATH/github.com/olegabu/go-secp256k1-zkp/secp256k1-zkp/.libs`.

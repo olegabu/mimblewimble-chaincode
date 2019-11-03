@@ -26,11 +26,11 @@ git clone https://github.com/olegabu/go-secp256k1-zkp
 
 # build
 cd $GOPATH/github.com/olegabu/go-secp256k1-zkp
-make
+CFLAGS="-fPIC" make
 ```
 
 this will build dependant C libraries secp256k1-zkp into `$GOPATH/github.com/olegabu/go-secp256k1-zkp/secp256k1-zkp/.libs`.
 
 ## TODO
 
-Note `CFLAGS="-fPIC"` flag is need to build this package only while not required in other uses of go-mimblewimble library. This need to be investigated.
+Note `CFLAGS="-fPIC"` flag is needed to build this package while not required in other uses of go-mimblewimble library. This need to be investigated.

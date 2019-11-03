@@ -3,7 +3,7 @@ package chaincode
 import (
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
-	mw "github.com/olegabu/go-mimblewimble"
+	"github.com/olegabu/go-mimblewimble"
 )
 
 var logger = shim.NewLogger("ValidatorChaincode")
@@ -22,20 +22,17 @@ func (cc *ValidatorChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response
 // Invoke is called as a result of an application request to run the chaincode.
 func (cc *ValidatorChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	function, params := stub.GetFunctionAndParameters()
-	logger.Info(function, params)
+	logger.Debug(function, params)
 
 	txBytes := []byte(params[0])
 
 	if function == "validate" {
-		err := mw.ValidateSignature(txBytes)
+		tx, err := mw.ValidateTransaction(txBytes)
 		if err != nil {
 			return shim.Error(err.Error())
 		}
 
-		//err = mw.ValidateCommitmentsSum(txBytes)
-		//if err != nil {
-		//	return shim.Error(err.Error())
-		//}
+		logger.Debug(tx)
 
 		return shim.Success(nil)
 	}

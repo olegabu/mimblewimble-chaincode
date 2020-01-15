@@ -26,7 +26,7 @@ func TestValidate(t *testing.T) {
 }
 
 func getTxBytes() []byte {
-	//bytes, err := ioutil.ReadFile("10_grin_repost.json")
+	//bytes, err := ioutil.ReadFile("../../go-secp256k1-zkp/tests/10_grin_repost.json")
 	//if err != nil {
 	//	log.Panic("cannot open json file with test transaction")
 	//}
